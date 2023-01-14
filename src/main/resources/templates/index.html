@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="fragments/layout :: head">
+</head>
+<body>
+    <header th:replace="fragments/layout :: header">
+    </header>
+
+    <p sec:authorize="isAuthenticated()"><!--Al menos esto funciona-->
+        Bienvenido! <span sec:authentication="name"></span>
+        Rol: <span sec:authentication="principal.authorities"></span>
+    </p>
+
+    <form th:action="@{/logout}" method="POST">
+        <button class="btn btn-primary" type="submit">Cerrar sesion</button>
+    </form>
+
+    <div>
+        <ul>
+            <li>
+                <a th:href="@{/persona/formulario}">Registrar Persona</a>        
+            </li>
+            <li>
+                <a th:href="@{/persona/listar}">Ver personas registradas</a>
+            </li>
+            <li>
+                <a th:href="@{/item/index}">Administrar Item</a>
+            </li>
+        </ul>
+    </div>
+    
+    <footer th:replace="fragments/layout :: footer">
+    </footer>
+    
+    <th:block th:replace="fragments/layout :: scripts">
+    </th:block>
+</body>
+</html>

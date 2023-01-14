@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/index}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/persona/listar}">Personas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/producto/index}">Items</a>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/logout}" method="POST">
+                                <button class="btn btn-primary" type="submit">
+                                    Cerrar sesion
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <footer th:fragment="footer" class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Sobre Nosotros</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Informacion</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Soporte</a></li>
+        </ul>
+        <p class="text-center text-muted">Universidad Amazonica de Pando ©2022</p>
+    </footer>
+
+    <th:block th:fragment="scripts">
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script src="https://kit.fontawesome.com/857545b33f.js" crossorigin="anonymous"></script>
+    </th:block>
+</body>
+
+</html>

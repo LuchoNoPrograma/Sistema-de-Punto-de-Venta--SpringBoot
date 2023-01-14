@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/layout :: head">
+</head>
+<body>
+    <header th:replace="fragments/layout :: header">
+    </header>
+    Formulario de Persona
+    <form th:action="@{/persona/registrar}" th:object="${persona}" method="post">
+        <input type="text" th:field="*{nombres}">
+        <input type="text" th:field="*{paterno}">
+        <input type="text" th:field="*{materno}">
+        <button type="submit">Registrar</button>
+    </form>
+    <footer th:replace="fragments/layout :: footer">
+    </footer>
+    
+    <th:block th:replace="fragments/layout :: scripts">
+    </th:block>
+</body>
+</html>

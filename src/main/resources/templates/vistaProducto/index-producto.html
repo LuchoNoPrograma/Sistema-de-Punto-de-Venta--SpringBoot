@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/layout :: head"></head>
+<body>
+    <header th:replace="fragments/layout :: header"></header>
+
+    <div id="app">
+        Prueba
+    </div>
+
+    <footer th:replace="fragments/layout :: footer"></footer>
+    <th:block th:replace="fragments/layout :: scripts"></th:block>
+    <script th:src="@{/custom/productoScripts/ProductoServicio.js}"></script>
+    <script th:src="@{/custom/productoScripts/ProductoControlador.js}"></script>
+</body>
+</html>

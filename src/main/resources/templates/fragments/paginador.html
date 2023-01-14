@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form th:fragment="orden" th:action="@{${paginador.url}}" method="GET" class="d-flex" >
+        <select class="form-select" name="orden" id="orden">
+            <option th:selected="asc == ${orden}" value="asc">Ascendente</option>
+            <option th:selected="desc == ${orden}" value="desc">Descendente</option>
+        </select>
+        <select class="form-select" name="columna" id="columna">
+            <option th:each="col : ${listaColumnas}" th:value="${col}" th:text="${col}" th:selected="${col} == ${columna}"></option>
+        </select>
+    </form>
+    <nav th:fragment="paginador">
+        <ul class="pagination">
+            <li class="page-item">
+                <span class="page-link disabled" th:if="${paginador.first}">Primera</span>
+                <a class="page-link" th:if="${not paginador.first}" 
+                th:href="@{${paginador.url}(page=0, orden=${orden}, columna=${columna})}">Primera</a>
+            </li>
+
+            <li class="page-item">
+                <span class="page-link disabled" th:if="${not paginador.hasPrevious}">Anterior</span>
+                <a class="page-link" th:if="${paginador.hasPrevious}" 
+                th:href="@{${paginador.url}(page=${paginador.paginaActual-2}, orden=${orden}, columna=${columna})}">Anterior</a>
+            </li>
+
+            <li class="page-item" th:each="item : ${paginador.paginas}">
+                <span class="page-link disabled" th:if="${item.actual}" th:text="${item.numero}"></span>
+                <a class="page-link" th:if="${not item.actual}" 
+                th:href="@{${paginador.url}(page=${item.numero - 1}, orden=${orden}, columna=${columna})}"
+                th:text="${item.numero}"></a>
+            </li>
+
+            <li class="page-item">
+                <span class="page-link disabled" th:if="${not paginador.hasNext}">Siguiente</span>
+                <a class="page-link" th:if="${paginador.hasNext}"
+                th:href="@{${paginador.url}(page=${paginador.paginaActual}, orden=${orden}, columna=${columna})}">Siguiente</a>
+            </li>
+
+            <li class="page-item">
+                <span class="page-link disabled" th:if="${paginador.last}">Ultimo</span>
+                <a class="page-link" th:if="${not paginador.last}"
+                th:href="@{${paginador.url}(page=${paginador.totalPaginas-1}, orden=${orden}, columna=${columna})}">Ultimo</a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
